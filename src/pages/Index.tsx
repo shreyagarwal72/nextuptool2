@@ -217,19 +217,21 @@ const Index = () => {
           <meta name="keywords" content={`${currentTool?.title.toLowerCase()}, file converter, web tools, online utilities, developer tools`} />
           <link rel="canonical" href={`https://webtoolssuite.com/${activeTool}`} />
         </Helmet>
-        <div className="min-h-screen bg-gradient-secondary animate-fade-in">
+        <div className="min-h-screen bg-gradient-secondary animate-fade-in-slow">
           <div className="container mx-auto">
-            <div className="pt-6 pb-4 animate-slide-up">
+            <div className="pt-6 pb-4 animate-slide-down">
               <Button 
                 variant="ghost" 
                 onClick={() => setActiveTool('home')}
-                className="mb-4 hover:bg-white/50 hover:scale-105 transition-all duration-200"
+                className="mb-4 hover:bg-white/50 hover:scale-105 transition-all duration-300 hover:shadow-medium group"
               >
-                <ArrowLeft className="w-4 h-4 mr-2" />
+                <ArrowLeft className="w-4 h-4 mr-2 group-hover:animate-wiggle" />
                 Back to Tools
               </Button>
             </div>
-            {renderActiveTool()}
+            <div className="animate-scale-in">
+              {renderActiveTool()}
+            </div>
           </div>
         </div>
       </>
@@ -267,37 +269,35 @@ const Index = () => {
       <div className="min-h-screen bg-gradient-secondary animate-fade-in">
         <div className="container mx-auto px-4 py-12">
           {/* Hero Section */}
-          <header className="text-center mb-16 animate-slide-up">
+          <header className="text-center mb-16 animate-slide-down">
             <div className="inline-flex items-center gap-2 mb-6">
-              <div className="p-3 rounded-2xl bg-gradient-hero shadow-large animate-bounce-in">
-                <Zap className="w-8 h-8 text-white" />
+              <div className="p-3 rounded-2xl bg-gradient-hero shadow-glow-intense animate-float">
+                <Zap className="w-8 h-8 text-white animate-pulse" />
               </div>
             </div>
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-              <span className="bg-gradient-hero bg-clip-text text-transparent">
-                Web Tools Suite
-              </span>
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 animate-bounce-in bg-gradient-animated bg-[length:400%_400%] animate-gradient-shift bg-clip-text text-transparent">
+              Web Tools Suite
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed animate-fade-in" style={{ animationDelay: '0.4s' }}>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed animate-fade-in-slow" style={{ animationDelay: '0.4s' }}>
               Professional web utilities for developers and creators. Convert files, transform data, and boost your productivity with our comprehensive toolkit.
             </p>
           </header>
 
           {/* Search and Filter */}
-          <div className="flex flex-col md:flex-row gap-4 mb-8 animate-fade-in" style={{ animationDelay: '0.6s' }}>
+          <div className="flex flex-col md:flex-row gap-4 mb-8 animate-slide-up" style={{ animationDelay: '0.6s' }}>
             <div className="flex-1">
               <input
                 type="text"
                 placeholder="Search tools..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full px-4 py-2 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all duration-200 focus:scale-[1.02]"
+                className="w-full px-6 py-3 rounded-xl border border-border bg-background/50 backdrop-blur-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all duration-300 focus:scale-[1.02] focus:shadow-glow"
               />
             </div>
             <Button
               variant={sortByAlpha ? "default" : "outline"}
               onClick={() => setSortByAlpha(!sortByAlpha)}
-              className="whitespace-nowrap hover:scale-105 transition-transform duration-200"
+              className="whitespace-nowrap hover:scale-105 transition-all duration-300 hover:shadow-medium bg-gradient-primary hover:bg-gradient-hero"
             >
               Sort A-Z
             </Button>
@@ -305,7 +305,7 @@ const Index = () => {
 
           {/* Tools Grid */}
           <main>
-            <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+            <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
               {tools.map((tool, index) => (
                 <ToolCard
                   key={tool.id}
@@ -313,16 +313,16 @@ const Index = () => {
                   description={tool.description}
                   icon={tool.icon}
                   onClick={() => setActiveTool(tool.id)}
-                  className="animate-fade-in"
+                  className="animate-fade-in hover:animate-float"
                   style={{ animationDelay: `${0.8 + index * 0.1}s` }}
                 />
               ))}
             </section>
 
             {/* Coming Soon */}
-            <section className="text-center animate-fade-in" style={{ animationDelay: '1.2s' }}>
-              <h2 className="text-2xl font-semibold mb-4 text-foreground">More Tools Coming Soon</h2>
-              <p className="text-muted-foreground">
+            <section className="text-center animate-rotate-in" style={{ animationDelay: '1.2s' }}>
+              <h2 className="text-2xl font-semibold mb-4 text-foreground bg-gradient-primary bg-clip-text text-transparent">More Tools Coming Soon</h2>
+              <p className="text-muted-foreground animate-pulse">
                 We're constantly adding new tools to help streamline your workflow.
               </p>
             </section>
@@ -330,10 +330,10 @@ const Index = () => {
         </div>
 
         {/* Footer */}
-        <footer className="border-t border-border/50 bg-card/30 backdrop-blur-sm mt-16">
+        <footer className="border-t border-border/50 bg-gradient-primary/10 backdrop-blur-sm mt-16 animate-slide-up">
           <div className="container mx-auto px-4 py-8">
             <div className="text-center text-muted-foreground">
-              <p>© 2025 Nextup Studio. All rights reserved.</p>
+              <p className="animate-fade-in">© 2025 Nextup Studio. All rights reserved.</p>
             </div>
           </div>
         </footer>

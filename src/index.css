@@ -40,13 +40,18 @@ All colors MUST be HSL.
     --gradient-primary: linear-gradient(135deg, hsl(244, 71%, 58%) 0%, hsl(270, 80%, 65%) 100%);
     --gradient-secondary: linear-gradient(135deg, hsl(222.2, 84%, 4.9%) 0%, hsl(217.2, 32.6%, 17.5%) 100%);
     --gradient-hero: linear-gradient(135deg, hsl(244, 71%, 58%) 0%, hsl(270, 80%, 65%) 50%, hsl(285, 85%, 70%) 100%);
+    --gradient-shimmer: linear-gradient(90deg, transparent, hsla(244, 71%, 58%, 0.4), transparent);
+    --gradient-animated: linear-gradient(-45deg, hsl(244, 71%, 58%), hsl(270, 80%, 65%), hsl(285, 85%, 70%), hsl(244, 71%, 58%));
     
     --shadow-soft: 0 4px 6px -1px hsl(0 0% 0% / 0.2), 0 2px 4px -1px hsl(0 0% 0% / 0.1);
     --shadow-medium: 0 10px 15px -3px hsl(0 0% 0% / 0.3), 0 4px 6px -2px hsl(0 0% 0% / 0.2);
     --shadow-large: 0 25px 50px -12px hsl(0 0% 0% / 0.4);
+    --shadow-glow: 0 0 30px hsl(244 71% 58% / 0.3), 0 0 60px hsl(244 71% 58% / 0.2);
+    --shadow-glow-intense: 0 0 40px hsl(244 71% 58% / 0.5), 0 0 80px hsl(244 71% 58% / 0.3);
     
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-spring: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --radius: 0.5rem;
 
@@ -106,5 +111,79 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .btn-gradient {
+    @apply bg-gradient-primary hover:bg-gradient-hero text-white font-medium px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-glow;
+  }
+
+  .card-hover {
+    @apply transition-all duration-500 hover:shadow-glow hover:-translate-y-2 hover:scale-[1.02];
+  }
+
+  .text-gradient {
+    @apply bg-gradient-primary bg-clip-text text-transparent;
+  }
+
+  .shimmer-effect {
+    @apply relative overflow-hidden;
+  }
+
+  .shimmer-effect::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-shimmer -translate-x-full animate-shimmer;
+  }
+
+  .floating-element {
+    @apply animate-float;
+  }
+
+  .glow-on-hover {
+    @apply transition-all duration-300 hover:shadow-glow-intense hover:scale-105;
+  }
+
+  .stagger-animation > * {
+    @apply opacity-0 animate-fade-in;
+  }
+
+  .stagger-animation > *:nth-child(1) { animation-delay: 0.1s; }
+  .stagger-animation > *:nth-child(2) { animation-delay: 0.2s; }
+  .stagger-animation > *:nth-child(3) { animation-delay: 0.3s; }
+  .stagger-animation > *:nth-child(4) { animation-delay: 0.4s; }
+  .stagger-animation > *:nth-child(5) { animation-delay: 0.5s; }
+  .stagger-animation > *:nth-child(6) { animation-delay: 0.6s; }
+  .stagger-animation > *:nth-child(7) { animation-delay: 0.7s; }
+  .stagger-animation > *:nth-child(8) { animation-delay: 0.8s; }
+  .stagger-animation > *:nth-child(9) { animation-delay: 0.9s; }
+
+  .glass-morphism {
+    @apply backdrop-blur-md bg-white/10 border border-white/20 rounded-lg;
+  }
+
+  .pulse-border {
+    @apply animate-pulse border-2 border-primary/30;
+  }
+
+  .rotate-on-hover {
+    @apply transition-transform duration-300 hover:rotate-3;
+  }
+
+  .slide-in-stagger > * {
+    @apply transform translate-y-8 opacity-0 transition-all duration-500;
+  }
+
+  .slide-in-stagger.animate > *:nth-child(1) { 
+    @apply translate-y-0 opacity-100;
+    transition-delay: 0.1s; 
+  }
+  .slide-in-stagger.animate > *:nth-child(2) { 
+    @apply translate-y-0 opacity-100;
+    transition-delay: 0.2s; 
+  }
+  .slide-in-stagger.animate > *:nth-child(3) { 
+    @apply translate-y-0 opacity-100;
+    transition-delay: 0.3s; 
   }
 }
