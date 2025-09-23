@@ -13,6 +13,11 @@ import { TimestampConverter } from "@/components/TimestampConverter";
 import { UnitConverter } from "@/components/UnitConverter";
 import { HTMLFormatter } from "@/components/HTMLFormatter";
 import { ImageCompressor } from "@/components/ImageCompressor";
+import { CSSMinifier } from "@/components/CSSMinifier";
+import { PasswordGenerator } from "@/components/PasswordGenerator";
+import { ColorPicker } from "@/components/ColorPicker";
+import { QRGenerator } from "@/components/QRGenerator";
+import { TextDiff } from "@/components/TextDiff";
 import { 
   Image, 
   Scale, 
@@ -26,11 +31,16 @@ import {
   Fingerprint,
   Clock,
   Calculator,
-  Code2
+  Code2,
+  Minimize2,
+  Shield,
+  Palette,
+  QrCode,
+  FileText as FileDiff
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-type ActiveTool = 'home' | 'image-converter' | 'image-resizer' | 'json-formatter' | 'universal-converter' | 'base64-converter' | 'url-shortener' | 'circle-cropper' | 'uuid-generator' | 'timestamp-converter' | 'unit-converter' | 'html-formatter' | 'image-compressor';
+type ActiveTool = 'home' | 'image-converter' | 'image-resizer' | 'json-formatter' | 'universal-converter' | 'base64-converter' | 'url-shortener' | 'circle-cropper' | 'uuid-generator' | 'timestamp-converter' | 'unit-converter' | 'html-formatter' | 'image-compressor' | 'css-minifier' | 'password-generator' | 'color-picker' | 'qr-generator' | 'text-diff';
 
 const Index = () => {
   const [activeTool, setActiveTool] = useState<ActiveTool>('home');
@@ -110,6 +120,36 @@ const Index = () => {
       description: 'Generate unique identifiers for applications',
       icon: Fingerprint,
     },
+    {
+      id: 'css-minifier' as ActiveTool,
+      title: 'CSS Minifier & Optimizer',
+      description: 'Compress and optimize CSS files for better performance',
+      icon: Minimize2,
+    },
+    {
+      id: 'password-generator' as ActiveTool,
+      title: 'Password Generator',
+      description: 'Create secure, random passwords with custom options',
+      icon: Shield,
+    },
+    {
+      id: 'color-picker' as ActiveTool,
+      title: 'Color Picker & Converter',
+      description: 'Pick colors and convert between HEX, RGB, HSL formats',
+      icon: Palette,
+    },
+    {
+      id: 'qr-generator' as ActiveTool,
+      title: 'QR Code Generator',
+      description: 'Generate QR codes for URLs, text, and more',
+      icon: QrCode,
+    },
+    {
+      id: 'text-diff' as ActiveTool,
+      title: 'Text Difference Checker',
+      description: 'Compare two texts and find differences',
+      icon: FileDiff,
+    },
   ];
 
   const filteredTools = allTools
@@ -152,6 +192,16 @@ const Index = () => {
         return <HTMLFormatter />;
       case 'image-compressor':
         return <ImageCompressor />;
+      case 'css-minifier':
+        return <CSSMinifier />;
+      case 'password-generator':
+        return <PasswordGenerator />;
+      case 'color-picker':
+        return <ColorPicker />;
+      case 'qr-generator':
+        return <QRGenerator />;
+      case 'text-diff':
+        return <TextDiff />;
       default:
         return null;
     }
