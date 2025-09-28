@@ -159,6 +159,20 @@ export default {
           "0%": { backgroundPosition: "0% 50%" },
           "50%": { backgroundPosition: "100% 50%" },
           "100%": { backgroundPosition: "0% 50%" }
+        },
+        "bg-float": {
+          "0%, 100%": { 
+            "transform": "scale(1) translateY(0px)",
+            "filter": "hue-rotate(0deg)"
+          },
+          "50%": { 
+            "transform": "scale(1.05) translateY(-10px)",
+            "filter": "hue-rotate(10deg)"
+          }
+        },
+        "bg-pulse": {
+          "0%": { "opacity": "0.3" },
+          "100%": { "opacity": "0.6" }
         }
       },
       animation: {
@@ -178,7 +192,9 @@ export default {
         "float": "float 3s ease-in-out infinite",
         "wiggle": "wiggle 1s ease-in-out infinite",
         "shimmer": "shimmer 2s linear infinite",
-        "gradient-shift": "gradient-shift 3s ease infinite"
+        "gradient-shift": "gradient-shift 3s ease infinite",
+        "bg-float": "bg-float 20s ease-in-out infinite",
+        "bg-pulse": "bg-pulse 15s ease-in-out infinite alternate"
       },
     },
   },

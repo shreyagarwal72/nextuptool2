@@ -45,6 +45,7 @@ import {
   FileCode
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { AnimatedBackground } from "@/components/AnimatedBackground";
 
 type ActiveTool = 'home' | 'image-converter' | 'image-resizer' | 'json-formatter' | 'base64-converter' | 'url-shortener' | 'universal-converter' | 'circle-cropper' | 'uuid-generator' | 'timestamp-converter' | 'unit-converter' | 'html-formatter' | 'image-compressor' | 'css-minifier' | 'password-generator' | 'color-picker' | 'qr-generator' | 'text-diff' | 'jwt-decoder' | 'url-encoder' | 'regex-tester' | 'xml-formatter';
 
@@ -255,7 +256,7 @@ const Index = () => {
           <meta name="keywords" content={`${currentTool?.title.toLowerCase()}, file converter, web tools, online utilities, developer tools`} />
           <link rel="canonical" href={`https://webtoolssuite.com/${activeTool}`} />
         </Helmet>
-        <div className="min-h-screen bg-gradient-secondary animate-fade-in-slow">
+        <AnimatedBackground className="animate-fade-in-slow">
           <div className="container mx-auto">
             <div className="pt-6 pb-4 animate-slide-down">
               <Button 
@@ -271,7 +272,7 @@ const Index = () => {
               {renderActiveTool()}
             </div>
           </div>
-        </div>
+        </AnimatedBackground>
       </>
     );
   }
@@ -304,7 +305,7 @@ const Index = () => {
           })}
         </script>
       </Helmet>
-      <div className="min-h-screen bg-gradient-secondary animate-fade-in">
+      <AnimatedBackground className="animate-fade-in">
         <div className="container mx-auto px-4 py-12">
           {/* Hero Section */}
           <header className="text-center mb-16 animate-slide-down">
@@ -375,7 +376,7 @@ const Index = () => {
             </div>
           </div>
         </footer>
-      </div>
+      </AnimatedBackground>
     </>
   );
 };
