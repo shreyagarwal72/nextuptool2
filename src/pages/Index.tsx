@@ -18,6 +18,10 @@ import { PasswordGenerator } from "@/components/PasswordGenerator";
 import { ColorPicker } from "@/components/ColorPicker";
 import { QRGenerator } from "@/components/QRGenerator";
 import { TextDiff } from "@/components/TextDiff";
+import { JWTDecoder } from "@/components/JWTDecoder";
+import { URLEncoder } from "@/components/URLEncoder";
+import { RegexTester } from "@/components/RegexTester";
+import { XMLFormatter } from "@/components/XMLFormatter";
 import { 
   Image, 
   Scale, 
@@ -36,11 +40,15 @@ import {
   Shield,
   Palette,
   QrCode,
-  FileText as FileDiff
+  FileText as FileDiff,
+  Key,
+  LinkIcon,
+  Search,
+  FileCode
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-type ActiveTool = 'home' | 'image-converter' | 'image-resizer' | 'json-formatter' | 'universal-converter' | 'base64-converter' | 'url-shortener' | 'circle-cropper' | 'uuid-generator' | 'timestamp-converter' | 'unit-converter' | 'html-formatter' | 'image-compressor' | 'css-minifier' | 'password-generator' | 'color-picker' | 'qr-generator' | 'text-diff';
+type ActiveTool = 'home' | 'image-converter' | 'image-resizer' | 'json-formatter' | 'universal-converter' | 'base64-converter' | 'url-shortener' | 'circle-cropper' | 'uuid-generator' | 'timestamp-converter' | 'unit-converter' | 'html-formatter' | 'image-compressor' | 'css-minifier' | 'password-generator' | 'color-picker' | 'qr-generator' | 'text-diff' | 'jwt-decoder' | 'url-encoder' | 'regex-tester' | 'xml-formatter';
 
 const Index = () => {
   const [activeTool, setActiveTool] = useState<ActiveTool>('home');
@@ -150,6 +158,30 @@ const Index = () => {
       description: 'Compare two texts and find differences',
       icon: FileDiff,
     },
+    {
+      id: 'jwt-decoder' as ActiveTool,
+      title: 'JWT Decoder & Validator',
+      description: 'Decode and validate JSON Web Tokens',
+      icon: Key,
+    },
+    {
+      id: 'url-encoder' as ActiveTool,
+      title: 'URL Encoder & Decoder',
+      description: 'Encode and decode URLs for safe transmission',
+      icon: LinkIcon,
+    },
+    {
+      id: 'regex-tester' as ActiveTool,
+      title: 'Regex Tester & Validator',
+      description: 'Test and validate regular expressions with real-time matching',
+      icon: Search,
+    },
+    {
+      id: 'xml-formatter' as ActiveTool,
+      title: 'XML Formatter & Validator',
+      description: 'Format, validate, and minify XML documents',
+      icon: FileCode,
+    },
   ];
 
   const filteredTools = allTools
@@ -202,6 +234,14 @@ const Index = () => {
         return <QRGenerator />;
       case 'text-diff':
         return <TextDiff />;
+      case 'jwt-decoder':
+        return <JWTDecoder />;
+      case 'url-encoder':
+        return <URLEncoder />;
+      case 'regex-tester':
+        return <RegexTester />;
+      case 'xml-formatter':
+        return <XMLFormatter />;
       default:
         return null;
     }
