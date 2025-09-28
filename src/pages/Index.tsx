@@ -4,9 +4,7 @@ import { ToolCard } from "@/components/ToolCard";
 import { ImageConverter } from "@/components/ImageConverter";
 import { ImageResizer } from "@/components/ImageResizer";
 import { JsonFormatter } from "@/components/JsonFormatter";
-import { UniversalConverter } from "@/components/UniversalConverter";
 import { Base64Converter } from "@/components/Base64Converter";
-import { UrlShortener } from "@/components/UrlShortener";
 import { CircleImageCropper } from "@/components/CircleImageCropper";
 import { UUIDGenerator } from "@/components/UUIDGenerator";
 import { TimestampConverter } from "@/components/TimestampConverter";
@@ -28,9 +26,7 @@ import {
   Code, 
   ArrowLeft,
   Zap,
-  FileType,
   FileText,
-  Link,
   Scissors,
   Fingerprint,
   Clock,
@@ -48,7 +44,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-type ActiveTool = 'home' | 'image-converter' | 'image-resizer' | 'json-formatter' | 'universal-converter' | 'base64-converter' | 'url-shortener' | 'circle-cropper' | 'uuid-generator' | 'timestamp-converter' | 'unit-converter' | 'html-formatter' | 'image-compressor' | 'css-minifier' | 'password-generator' | 'color-picker' | 'qr-generator' | 'text-diff' | 'jwt-decoder' | 'url-encoder' | 'regex-tester' | 'xml-formatter';
+type ActiveTool = 'home' | 'image-converter' | 'image-resizer' | 'json-formatter' | 'base64-converter' | 'circle-cropper' | 'uuid-generator' | 'timestamp-converter' | 'unit-converter' | 'html-formatter' | 'image-compressor' | 'css-minifier' | 'password-generator' | 'color-picker' | 'qr-generator' | 'text-diff' | 'jwt-decoder' | 'url-encoder' | 'regex-tester' | 'xml-formatter';
 
 const Index = () => {
   const [activeTool, setActiveTool] = useState<ActiveTool>('home');
@@ -109,18 +105,6 @@ const Index = () => {
       title: 'Unit Converter',
       description: 'Convert between different units of measurement',
       icon: Calculator,
-    },
-    {
-      id: 'universal-converter' as ActiveTool,
-      title: 'Universal File Converter',
-      description: 'Convert between multiple file formats',
-      icon: FileType,
-    },
-    {
-      id: 'url-shortener' as ActiveTool,
-      title: 'URL Shortener',
-      description: 'Create short, shareable links',
-      icon: Link,
     },
     {
       id: 'uuid-generator' as ActiveTool,
@@ -206,12 +190,8 @@ const Index = () => {
         return <ImageResizer />;
       case 'json-formatter':
         return <JsonFormatter />;
-      case 'universal-converter':
-        return <UniversalConverter />;
       case 'base64-converter':
         return <Base64Converter />;
-      case 'url-shortener':
-        return <UrlShortener />;
       case 'circle-cropper':
         return <CircleImageCropper />;
       case 'uuid-generator':
