@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { motion, AnimatePresence } from "framer-motion";
-import { Input, Button as HeroButton, Chip } from "@heroui/react";
 import { ToolCard } from "@/components/ToolCard";
 import { ImageConverter } from "@/components/ImageConverter";
 import { ImageResizer } from "@/components/ImageResizer";
@@ -203,9 +202,9 @@ const Index = () => {
               transition={{ delay: 0.6 }}
               className="mt-4"
             >
-              <Chip variant="bordered" className="border-primary/30 text-muted-foreground">
+              <span className="inline-flex items-center px-3 py-1 rounded-full border border-primary/30 text-sm text-muted-foreground">
                 {allTools.length} Free Tools Available
-              </Chip>
+              </span>
             </motion.div>
           </header>
 
@@ -216,27 +215,23 @@ const Index = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.5 }}
           >
-            <div className="flex-1">
-              <Input
+            <div className="flex-1 relative">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
+              <input
                 type="text"
                 placeholder="Search tools..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full"
-                classNames={{
-                  input: "bg-transparent",
-                  inputWrapper: "bg-white/5 backdrop-blur-xl border-white/10 hover:bg-white/10 focus-within:bg-white/10",
-                }}
-                startContent={<Search className="w-4 h-4 text-muted-foreground" />}
+                className="w-full pl-10 pr-4 py-3 rounded-xl border border-white/10 bg-white/5 backdrop-blur-xl text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 hover:bg-white/10 transition-all duration-300"
               />
             </div>
-            <HeroButton
-              variant={sortByAlpha ? "solid" : "bordered"}
-              onPress={() => setSortByAlpha(!sortByAlpha)}
-              className={sortByAlpha ? "bg-gradient-primary text-white" : "border-white/20 text-foreground"}
+            <Button
+              variant={sortByAlpha ? "default" : "outline"}
+              onClick={() => setSortByAlpha(!sortByAlpha)}
+              className={sortByAlpha ? "bg-gradient-primary text-white hover:opacity-90" : "border-white/20 hover:bg-white/10"}
             >
               Sort A-Z
-            </HeroButton>
+            </Button>
           </motion.div>
 
           {/* Tools Grid */}
