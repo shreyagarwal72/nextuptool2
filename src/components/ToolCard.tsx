@@ -1,4 +1,4 @@
-import { Card as HeroCard, CardBody, CardFooter } from "@heroui/react";
+import { Card } from "@heroui/react";
 import { motion } from "framer-motion";
 import { LucideIcon } from "lucide-react";
 
@@ -25,13 +25,11 @@ export const ToolCard = ({ title, description, icon: Icon, onClick, className, s
       whileHover={{ y: -8, scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       style={style}
+      onClick={onClick}
+      className="cursor-pointer"
     >
-      <HeroCard
-        isPressable
-        onPress={onClick}
-        className={`group cursor-pointer border-0 bg-white/5 backdrop-blur-xl backdrop-saturate-150 hover:bg-white/10 transition-all duration-500 hover:shadow-glow h-full ${className}`}
-      >
-        <CardBody className="flex flex-col items-center text-center gap-4 p-6">
+      <Card className={`group border-0 bg-white/5 backdrop-blur-xl backdrop-saturate-150 hover:bg-white/10 transition-all duration-500 hover:shadow-glow h-full ${className}`}>
+        <Card.Content className="flex flex-col items-center text-center gap-4 p-6">
           <motion.div 
             className="p-4 rounded-2xl bg-gradient-primary text-white shadow-glow"
             whileHover={{ scale: 1.15, rotate: 6 }}
@@ -48,18 +46,12 @@ export const ToolCard = ({ title, description, icon: Icon, onClick, className, s
               {description}
             </p>
           </div>
-        </CardBody>
-        
-        <CardFooter className="justify-center pb-4 pt-0">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileHover={{ opacity: 1, y: 0 }}
-            className="px-4 py-2 bg-gradient-primary text-white text-sm rounded-xl shadow-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-          >
+
+          <div className="px-4 py-2 bg-gradient-primary text-white text-sm rounded-xl shadow-medium opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
             Open Tool →
-          </motion.div>
-        </CardFooter>
-      </HeroCard>
+          </div>
+        </Card.Content>
+      </Card>
     </motion.div>
   );
 };
