@@ -1,8 +1,15 @@
 import type { Config } from "tailwindcss";
+import { heroui } from "@heroui/react";
 
 export default {
   darkMode: ["class"],
-  content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
+  content: [
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+    "./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -72,11 +79,6 @@ export default {
         'glow': 'var(--shadow-glow)',
         'glow-intense': 'var(--shadow-glow-intense)',
       },
-      transitionTimingFunction: {
-        'smooth': 'var(--transition-smooth)',
-        'spring': 'var(--transition-spring)',
-        'bounce': 'var(--transition-bounce)',
-      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
@@ -84,96 +86,68 @@ export default {
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
         },
         "fade-in": {
-          "0%": {
-            opacity: "0",
-            transform: "translateY(10px)"
-          },
-          "100%": {
-            opacity: "1",
-            transform: "translateY(0)"
-          }
+          "0%": { opacity: "0", transform: "translateY(10px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
         },
         "slide-up": {
           "0%": { transform: "translateY(100%)", opacity: "0" },
-          "100%": { transform: "translateY(0)", opacity: "1" }
+          "100%": { transform: "translateY(0)", opacity: "1" },
         },
         "slide-down": {
           "0%": { transform: "translateY(-100%)", opacity: "0" },
-          "100%": { transform: "translateY(0)", opacity: "1" }
-        },
-        "slide-left": {
-          "0%": { transform: "translateX(100%)", opacity: "0" },
-          "100%": { transform: "translateX(0)", opacity: "1" }
-        },
-        "slide-right": {
-          "0%": { transform: "translateX(-100%)", opacity: "0" },
-          "100%": { transform: "translateX(0)", opacity: "1" }
+          "100%": { transform: "translateY(0)", opacity: "1" },
         },
         "bounce-in": {
           "0%": { transform: "scale(0.3)", opacity: "0" },
           "50%": { transform: "scale(1.05)", opacity: "0.8" },
           "70%": { transform: "scale(0.9)", opacity: "0.9" },
-          "100%": { transform: "scale(1)", opacity: "1" }
+          "100%": { transform: "scale(1)", opacity: "1" },
         },
         "scale-in": {
           "0%": { transform: "scale(0.8)", opacity: "0" },
-          "100%": { transform: "scale(1)", opacity: "1" }
+          "100%": { transform: "scale(1)", opacity: "1" },
         },
         "rotate-in": {
           "0%": { transform: "rotate(-180deg) scale(0.8)", opacity: "0" },
-          "100%": { transform: "rotate(0deg) scale(1)", opacity: "1" }
+          "100%": { transform: "rotate(0deg) scale(1)", opacity: "1" },
         },
         "pulse-glow": {
           "0%, 100%": { boxShadow: "0 0 20px rgba(139, 92, 246, 0.3)" },
-          "50%": { boxShadow: "0 0 40px rgba(139, 92, 246, 0.6)" }
+          "50%": { boxShadow: "0 0 40px rgba(139, 92, 246, 0.6)" },
         },
         "float": {
           "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-10px)" }
+          "50%": { transform: "translateY(-10px)" },
         },
         "wiggle": {
           "0%, 100%": { transform: "rotate(-3deg)" },
-          "50%": { transform: "rotate(3deg)" }
+          "50%": { transform: "rotate(3deg)" },
         },
         "shimmer": {
           "0%": { backgroundPosition: "-200% 0" },
-          "100%": { backgroundPosition: "200% 0" }
+          "100%": { backgroundPosition: "200% 0" },
         },
         "gradient-shift": {
           "0%": { backgroundPosition: "0% 50%" },
           "50%": { backgroundPosition: "100% 50%" },
-          "100%": { backgroundPosition: "0% 50%" }
+          "100%": { backgroundPosition: "0% 50%" },
         },
         "bg-float": {
-          "0%, 100%": { 
-            "transform": "scale(1) translateY(0px)",
-            "filter": "hue-rotate(0deg)"
-          },
-          "50%": { 
-            "transform": "scale(1.05) translateY(-10px)",
-            "filter": "hue-rotate(10deg)"
-          }
+          "0%, 100%": { transform: "scale(1) translateY(0px)", filter: "hue-rotate(0deg)" },
+          "50%": { transform: "scale(1.05) translateY(-10px)", filter: "hue-rotate(10deg)" },
         },
         "bg-pulse": {
-          "0%": { "opacity": "0.3" },
-          "100%": { "opacity": "0.6" }
-        }
+          "0%": { opacity: "0.3" },
+          "100%": { opacity: "0.6" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -183,8 +157,6 @@ export default {
         "fade-in-slow": "fade-in 0.8s ease-out",
         "slide-up": "slide-up 0.4s ease-out",
         "slide-down": "slide-down 0.4s ease-out",
-        "slide-left": "slide-left 0.4s ease-out",
-        "slide-right": "slide-right 0.4s ease-out",
         "bounce-in": "bounce-in 0.6s ease-out",
         "scale-in": "scale-in 0.3s ease-out",
         "rotate-in": "rotate-in 0.5s ease-out",
@@ -194,9 +166,22 @@ export default {
         "shimmer": "shimmer 2s linear infinite",
         "gradient-shift": "gradient-shift 3s ease infinite",
         "bg-float": "bg-float 20s ease-in-out infinite",
-        "bg-pulse": "bg-pulse 15s ease-in-out infinite alternate"
+        "bg-pulse": "bg-pulse 15s ease-in-out infinite alternate",
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    heroui({
+      themes: {
+        dark: {
+          colors: {
+            primary: { DEFAULT: "#7c3aed", foreground: "#ffffff" },
+            secondary: { DEFAULT: "#a855f7", foreground: "#ffffff" },
+            focus: "#7c3aed",
+          },
+        },
+      },
+    }),
+  ],
 } satisfies Config;

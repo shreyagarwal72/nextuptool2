@@ -1,5 +1,5 @@
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Card } from "@heroui/react";
+import { motion } from "framer-motion";
 import { LucideIcon } from "lucide-react";
 
 interface ToolCardProps {
@@ -9,34 +9,49 @@ interface ToolCardProps {
   onClick: () => void;
   className?: string;
   style?: React.CSSProperties;
+  index?: number;
 }
 
-export const ToolCard = ({ title, description, icon: Icon, onClick, className, style }: ToolCardProps) => {
+export const ToolCard = ({ title, description, icon: Icon, onClick, className, style, index = 0 }: ToolCardProps) => {
   return (
-    <Card 
-      className={`group cursor-pointer transition-all duration-500 hover:shadow-glow hover:-translate-y-3 hover:scale-[1.03] border-0 shadow-soft bg-card/80 backdrop-blur-sm animate-scale-in hover:bg-card/95 relative overflow-hidden ${className}`} 
-      onClick={onClick}
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ 
+        duration: 0.5, 
+        delay: index * 0.05,
+        ease: [0.25, 0.46, 0.45, 0.94]
+      }}
+      whileHover={{ y: -8, scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
       style={style}
+      onClick={onClick}
+      className="cursor-pointer"
     >
-      {/* Animated background effect */}
-      <div className="absolute inset-0 bg-gradient-shimmer opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-shimmer" />
-      
-      <div className="relative p-6 flex flex-col items-center text-center space-y-4">
-        <div className="p-4 rounded-xl bg-gradient-primary text-white group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-glow group-hover:shadow-glow-intense animate-pulse-glow">
-          <Icon className="w-6 h-6" />
-        </div>
-        
-        <div className="space-y-2">
-          <h3 className="font-semibold text-lg text-card-foreground group-hover:text-primary transition-all duration-300 group-hover:animate-wiggle">{title}</h3>
-          <p className="text-sm text-muted-foreground leading-relaxed group-hover:text-card-foreground transition-colors duration-300">{description}</p>
-        </div>
-        
-        <div className="mt-auto transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-          <div className="px-4 py-2 bg-gradient-primary text-white text-sm rounded-lg shadow-medium">
+      <Card className={`group border-0 bg-white/5 backdrop-blur-xl backdrop-saturate-150 hover:bg-white/10 transition-all duration-500 hover:shadow-glow h-full ${className}`}>
+        <Card.Content className="flex flex-col items-center text-center gap-4 p-6">
+          <motion.div 
+            className="p-4 rounded-2xl bg-gradient-primary text-white shadow-glow"
+            whileHover={{ scale: 1.15, rotate: 6 }}
+            transition={{ type: "spring", stiffness: 300, damping: 15 }}
+          >
+            <Icon className="w-6 h-6" />
+          </motion.div>
+          
+          <div className="space-y-2">
+            <h3 className="font-semibold text-lg text-card-foreground group-hover:text-primary transition-colors duration-300">
+              {title}
+            </h3>
+            <p className="text-sm text-muted-foreground leading-relaxed group-hover:text-card-foreground/80 transition-colors duration-300">
+              {description}
+            </p>
+          </div>
+
+          <div className="px-4 py-2 bg-gradient-primary text-white text-sm rounded-xl shadow-medium opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
             Open Tool →
           </div>
-        </div>
-      </div>
-    </Card>
+        </Card.Content>
+      </Card>
+    </motion.div>
   );
 };
